@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../../partials/head.ejs'); %>
+<body>
+  <%- include('../../partials/navbar.ejs'); %>
+
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h2>Criar novo artigo</h2>
+      </div>
+      <div class="card-body">
+        <form action="/articles/save" method="POST">
+          <input 
+            class="form-control mb-3"
+            type="text"
+            name="title"
+            id="title"
+            placeholder="Defina o titulo do artigo"  
+          />
+          <textarea
+            class="form-control"
+            name="body" 
+            id="body"
+            placeholder="Digite seu texto"></textarea>
+          <select name="category" id="category" class="form-select mt-3">
+            <option selected>Escolha uma categoria</option>
+            <% categories.forEach(category => {%>
+              <option value="<%= category.id %>"> <%= category.title %></option>
+            <%})%>
+          </select>
+          <button class="btn btn-success mt-3">Criar artigo</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../../partials/scripts.ejs'); %>
+  <%- include('../../partials/tinyemc.ejs'); %>  
+</body>
+</html>

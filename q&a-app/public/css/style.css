@@ -1,0 +1,8 @@
+body {
+  background-color: #eceff1;
+}
+
+.navbar__logo {
+  max-width: 3.5rem;
+  aspect-ratio: 1 / 1;
+}

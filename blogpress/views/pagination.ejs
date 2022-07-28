@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs'); %>
+<body>
+  <%- include('./partials/home_navbar.ejs'); %>
+  <div class="container">
+    <%articles.forEach(article => {%>
+        <div class="card mb-3">
+          <div class="card-header">
+            <h3> <%= article.title %></h3>
+          </div>
+          <div class="card-body">
+            <a
+                href="/articles/<%= article.slug%>"
+                class="btn btn-success">Leia mais</a>
+          </div>
+        </div>
+
+      
+    <%})%>
+    <footer>
+      <%if(next) {%>
+        <a
+          class="btn btn-dark btn-sm" 
+          style="float: right;" 
+          href="/articles/page/<%= Number(page) + 1 %>">Next >>
+        </a>
+      <%}%>
+
+      <%if(Number(page) > 1 ) {%>
+        <a 
+          class="btn btn-dark btn-sm"
+          style="float: left;"        
+          href="/articles/page/<%= Number(page - 1)%>"
+        > << Previous
+      </a>
+      <%}%>
+    </footer>
+  </div>
+
+  <%- include('./partials/scripts.ejs'); %>
+</body>
+</html>

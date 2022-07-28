@@ -1,0 +1,31 @@
+<link rel="stylesheet" type="text/css" href="../../public/prism_js/prism.css">
+<script src="../../public/prism_js/prism.js"></script>
+<script src="/tinymce/tinymce.min.js"></script>
+  <script>
+    tinymce.init({
+      selector: 'textarea#body',
+      plugins: 'lists advlist code image wordcount table codesample preview autolink',
+      codesample_languages: [
+        { text: 'HTML/XML', value: 'markup' },
+        { text: 'JavaScript', value: 'javascript' },
+        { text: 'CSS', value: 'css' },
+        { text: 'PHP', value: 'php' },
+        { text: 'Python', value: 'python' },
+        { text: 'C', value: 'c' },
+        { text: 'C#', value: 'csharp' },
+        { text: 'C++', value: 'cpp' },
+        { text: 'BASH', value: 'bash'}
+      ],
+      statusbar: 'wordcount',
+      toolbar: 'styles | bold italic | alignleft alignjustify aligncenter alignright | bullist indent outdent | blockquote codesample | preview',
+      menubar: 'edit view insert',
+      menu: {
+        edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },
+        view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen | showcomments' },
+        insert: { title: 'Insert', items: 'image link media addcomment pageembed template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor tableofcontents | insertdatetime' },
+      },
+      language: 'pt_BR',
+    })
+  </script>
+
+<!-- table tabledelete tableprops tablerowprops tablecellprops tableinsertrowbefore tableinsertrowafter tabledeleterow tableinsertcolbefore tableinsertcolafter -->

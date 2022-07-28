@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../../partials/head.ejs'); %>
+<body>
+  <%- include('../../partials/navbar.ejs'); %>
+  <div class="container">
+    <h2 class="mb-3">Editar Artigo</h2>
+    <hr>
+
+    <form action="/articles/update" method="POST">
+      <input 
+        class="form-control mb-3"
+        type="text"
+        name="title"
+        id="title"
+        placeholder="Defina o titulo do artigo"
+        value="<%- article.title %>"  
+      />
+      <textarea
+        class="form-control"
+        name="body" 
+        id="body"
+        placeholder="Digite seu texto"></textarea>
+      <select name="category" id="category" class="form-select mt-3">
+        <% categories.forEach(category => {%>
+          <%if(category.id == article.categoryId){%>
+            <option value="<%= category.id %>" selected>
+              <%= category.title%>
+            </option>
+          <%} else {%>
+            <option value="<%= category.id %>">
+              <%= category.title %>
+            </option>
+          <%}%>
+        <%})%>
+      </select>
+      <input 
+        type="hidden" 
+        name="article-id"
+        id="article-id"
+        value="<%= article.id %>"
+      />
+      <button class="btn btn-success mt-3">Editar artigo</button>
+    </form>
+  </div>
+
+  <div id="content" style="display: none">
+    <%- article.body %>
+  </div>
+
+
+  <%- include('../../partials/scripts.ejs'); %>
+<link rel="stylesheet" type="text/css" href="../../public/prism_js/prism.css">
+<script src="../../public/prism_js/prism.js"></script>
+<script src="/tinymce/tinymce.min.js"></script>
+  <script>
+
+    let content = document.querySelector('#content').innerHTML
+
+    tinymce.init({
+      selector: 'textarea#body',
+      plugins: 'lists advlist code image wordcount table codesample preview autolink',
+      codesample_languages: [
+        { text: 'HTML/XML', value: 'markup' },
+        { text: 'JavaScript', value: 'javascript' },
+        { text: 'CSS', value: 'css' },
+        { text: 'PHP', value: 'php' },
+        { text: 'Python', value: 'python' },
+        { text: 'C', value: 'c' },
+        { text: 'C#', value: 'csharp' },
+        { text: 'C++', value: 'cpp' },
+        { text: 'BASH', value: 'bash'}
+      ],
+      statusbar: 'wordcount',
+      toolbar: 'styles | bold italic | alignleft alignjustify aligncenter alignright | bullist indent outdent | blockquote codesample | preview',
+      menubar: 'edit view insert',
+      menu: {
+        edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },
+        view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen | showcomments' },
+        insert: { title: 'Insert', items: 'image link media addcomment pageembed template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor tableofcontents | insertdatetime' },
+      },
+      language: 'pt_BR',
+      init_instance_callback: () => {
+        tinymce.get("body").setContent(content)
+      }
+    })
+  </script>
+</body>
+</html>

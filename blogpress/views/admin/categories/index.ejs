@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../../partials/head.ejs'); %>
+<body>
+  <%- include('../../partials/navbar.ejs'); %>
+
+  <div class="container">
+    <h2 class="mb-3">Categorias</h2>
+    <a href="/admin/categories/new" class="btn btn-success">Adcionar categoria</a>
+    <hr>
+
+    <table class="table table-light table-striped table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Slug</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% categories.forEach(category => {%>
+          <tr>
+            <td><%= category.id %></td>
+            <td><%= category.title %></td>
+            <td><%= category.slug %></td>
+            <td>
+              <a 
+              class="btn btn-primary btn-sm"
+              href="/admin/categories/edit/<%= category.id %>">Editar</a>
+
+              <!--
+                Criando formulário escondido para poder enviar dados para o backend
+
+                name="nome da requisição no req.body"
+                value="variavel (EJS) do id do dado"
+              -->
+              <form 
+                action="/categories/delete" 
+                method="POST" 
+                style="display: inline"
+                onsubmit="confirmDelete(event)"
+              />
+                <input type="hidden" name="id" value="<%= category.id %>">
+                <button class="btn btn-danger btn-sm">Deletar</button>
+              </form>
+            </th>
+          </td>
+        <%})%>
+      </tbody>
+    </table>
+  </div>
+
+  <%- include('../../partials/scripts.ejs'); %>
+
+  <script>
+    function confirmDelete(e, form) {
+      e.preventDefault()
+
+      let decision = confirm('Você quer deletar esta categoria?')
+
+      if(decision) {
+        e.target.submit()
+      }
+    }
+  </script>
+</body>
+</html>

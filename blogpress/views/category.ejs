@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs'); %>
+<body>
+  <%- include('./partials/home_navbar.ejs'); %>
+
+  <div class="container">
+    <h2 class="mb-4"><%= category.title %></h1>
+
+    <% articles.forEach(article => {%>
+      <div class="card mb-3">
+        <div class="card-header">
+          <h4><%= article.title%></h4>
+        </div>
+        <div class="card-body">
+          <a
+            href="/articles/<%= article.slug%>"
+            class="btn btn-dark">Leia mais</a>
+        </div>
+      </div>
+    <%})%>
+  </div>
+
+  <%- include('./partials/scripts.ejs'); %>
+</body>
+</html>

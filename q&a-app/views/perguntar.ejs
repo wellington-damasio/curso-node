@@ -1,0 +1,47 @@
+<%- include ('partials/header.ejs'); -%>
+
+<body>
+  <%- include ('partials/navbar.ejs'); -%>
+
+  <div class="container">
+    <div class="card mt-4">
+      <div class="card-header">
+        <h3 class=" display-6 mb-3">Perguntar</h3>
+      </div>
+
+      <div class="card-body">
+
+        <!-- Existem 2 métodos: GET e POST -->
+        <!-- GET: Dados são enviados  por query-params (URL) para o backend 
+          (?nome=... ?idade=...) 
+          O método GET possui falhas de segurança e deixa a URL feia -->
+        <!-- POST: Os dados são passados DENTRO DA REQUISIÇÃO (escondidos) e mais seguros -->
+        <form method="POST" action="/salvarpergunta">
+          <label for="question-title" class="form-label">
+            Insira o título
+          </label>
+          <input 
+            class="form-control mb-3"
+            name="question-title" 
+            id="question-title" 
+            type="text" 
+          />
+    
+          <label for="question-desc" class="form-label">
+            Faça sua pergunta
+          </label>
+          <textarea 
+            id="question-desc" 
+            class="form-control mb-3"
+            name="question-desc">
+          </textarea>
+    
+          <button class="btn btn-primary">Enviar pergunta</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <%- include('partials/scripts.ejs'); -%>
+</body>
+</html>
